@@ -111,6 +111,7 @@ When running into issues, consider the following:
   * Particularly prevalent when listening to ports outside of 514 or writing log data outside of */var/log/*
   * To see current state, run `sestatus | grep Current` enforcing indicates selinux is enabled
 * To validate data is streaming in, or specific format is used, try `tcpdump -Ani any "port 514 and host 10.200.1.1"`
+* Ensure that you have a valid route back to the source (with `ip route get 192.168.100.100` replacing the IP adress as appropriate) and [disabling route path filtering][https://nrocco.github.io/2013/04/13/disable-rp-filter.html] - note that `tcpdump` will still display packets that the kernel will be route path filtering.
 
 # Testing
 [sysloggen](https://subversion.assembla.com/svn/logzilla/scripts/contrib/sysloggen/) utility is great at generating syslog traffic to ensure infrastructure is functioning as expected. Tool could also be used to run load and loss tests.
